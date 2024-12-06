@@ -1,6 +1,6 @@
 student = [
   {
-    studentName: "Ganesh singh",
+    studentName: "ganesh singh",
     marks: "65%",
     class: "6th",
     address: "rajsthan",
@@ -41,11 +41,9 @@ student = [
 ];
 const tabdiv = document.querySelector(".tabdiv");
 const par = document.querySelector(".para");
-
 const randerstudent = (student) => {
   tabdiv.innerHTML = "";
-
-  student.map((student) => {
+  student.forEach((student) => {
     const newdiv = document.createElement("div");
     newdiv.classList.add("gs");
     newdiv.innerHTML = `
@@ -59,19 +57,13 @@ const randerstudent = (student) => {
 randerstudent(student);
 const srcbtn = document.querySelector("#srcbtn");
 const inp = document.querySelector("#input");
-
-srcbtn.addEventListener("click", () => {
+inp.addEventListener("input", () => {
   const inpval = inp.value.toLowerCase();
-
-  const newstd = student.filter((data) => {
-    return data.studentName.toLowerCase().startsWith(inpval);
+  const fillterstudent = student.filter((student) => {
+    return student.studentName.startsWith(inpval);
   });
-  randerstudent(newstd);
-  if (newstd.length === 0) {
-    // const emp = document.createElement("div");
-    // emp.textContent = "no student found";
-    // tabdiv.appendChild(emp);
-
+  randerstudent(fillterstudent);
+  if (fillterstudent.length === 0) {
     par.innerText = "No students found.";
   } else {
     par.innerText = "";
